@@ -1,5 +1,6 @@
 package com.proyecto.joyeria.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -14,7 +15,7 @@ public class Producto {
     @Column(nullable = false)
     private Integer cantidad;
 
-    @Column(nullable = false, precision = 10, scale = 2)
+    @Column(nullable = false, precision = 10)
     private Double precio;
 
     // Relación con categoría
@@ -23,8 +24,8 @@ public class Producto {
     private Categoria categoria;
 
     // Relación 1:1 con Imagen
-    @OneToOne
-    @JoinColumn(name = "id_imagen", nullable = false, unique = true)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "id_imagen", nullable = false)
     private Imagen imagen;
 
     // Getters & Setters

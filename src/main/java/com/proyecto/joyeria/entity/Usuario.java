@@ -2,6 +2,9 @@ package com.proyecto.joyeria.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "Usuario")
 public class Usuario {
@@ -16,16 +19,12 @@ public class Usuario {
     @Column(name = "contrasena", nullable = false, length = 200)
     private String contrasena;
 
-    @Column(name = "direccion", length = 300)
-    private String direccion;
-
     public Usuario() {}
 
-    public Usuario(String email, String nombre, String contrasena, String direccion) {
+    public Usuario(String email, String nombre, String contrasena) {
         this.email = email;
         this.nombre = nombre;
         this.contrasena = contrasena;
-        this.direccion = direccion;
     }
 
     public String getEmail() {
@@ -50,13 +49,5 @@ public class Usuario {
 
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
     }
 }

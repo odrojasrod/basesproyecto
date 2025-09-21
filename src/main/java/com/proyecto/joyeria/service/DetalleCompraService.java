@@ -54,4 +54,45 @@ public class DetalleCompraService {
         DetalleCompra detalleCompra = new DetalleCompra(producto, usuario);
         return detalleCompraRepository.save(detalleCompra);
     }
+
+    @Transactional
+    public DetalleCompra actualizarCompra(Long idCompra, Long idProducto, String emailUsuario) {
+        DetalleCompra compra = detalleCompraRepository.findById(idCompra)
+                .orElseThrow(() -> new RuntimeException("Compra no encontrada"));
+
+        Producto nuevoProducto = productoRepository.findById(idProducto)
+                .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+        Usuario nuevoUsuario = usuarioRepository.findById(emailUsuario)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        if (!compra.getProducto().getIdProducto().equals(nuevoProducto.getIdProducto())) {
+            Producto antiguoProducto = compra.getProducto();
+            antiguoProducto.setCantidad(antiguoProducto.getCantidad() + 1);
+            productoRepository.save(antiguoProducto);
+
+            if (nuevoProducto.getCantidad() <= 0) {
+                throw new RuntimeException("El nuevo producto no tiene stock disponible.");
+            }
+            nuevoProducto.setCantidad(nuevoProducto.getCantidad() - 1);
+            productoRepository.save(nuevoProducto);
+
+            compra.setProducto(nuevoProducto);
+        }
+
+        compra.setUsuario(nuevoUsuario);
+        return detalleCompraRepository.save(compra);
+    }
+
+    @Transactional
+    public void eliminarCompra(Long idCompra) {
+        DetalleCompra compra = detalleCompraRepository.findById(idCompra)
+                .orElseThrow(() -> new RuntimeException("Compra no encontrada"));
+
+        // Devolver el stock del producto
+        Producto producto = compra.getProducto();
+        producto.setCantidad(producto.getCantidad() + 1);
+        productoRepository.save(producto);
+
+        detalleCompraRepository.delete(compra);
+    }
 }

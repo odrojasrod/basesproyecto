@@ -1,5 +1,6 @@
 package com.proyecto.joyeria.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -10,9 +11,6 @@ public class Imagen {
 
     @Column(nullable = false, length = 500)
     private String url;
-
-    @OneToOne(mappedBy = "imagen", cascade = CascadeType.ALL)
-    private Producto producto;
 
     // Getters & Setters
     public Long getIdImagen() {
@@ -29,13 +27,5 @@ public class Imagen {
 
     public void setUrl(String url) {
         this.url = url;
-    }
-
-    public Producto getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Producto producto) {
-        this.producto = producto;
     }
 }

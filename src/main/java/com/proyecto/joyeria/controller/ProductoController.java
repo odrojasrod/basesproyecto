@@ -6,6 +6,7 @@ import com.proyecto.joyeria.repository.CategoriaRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/productos")
@@ -20,18 +21,22 @@ public class ProductoController {
     }
 
     // Crear producto
-    @PostMapping
-    public Producto crearProducto(
-            @RequestParam String nombre,
-            @RequestParam int cantidad,
-            @RequestParam double precio,
-            @RequestParam Long idCategoria,
-            @RequestParam String urlImagen) {
+    @PostMapping(consumes = "application/json")
+    public Producto crearProducto(@RequestBody Producto producto) {
+        Categoria categoria = null;
+        if (producto.getCategoria() != null && producto.getCategoria().getId() != null) {
+            categoria = categoriaRepository.findById(producto.getCategoria().getId()).orElse(null);
+        }
 
-        Categoria categoria = categoriaRepository.findById(idCategoria)
-                .orElseThrow(() -> new RuntimeException("Categoria no encontrada"));
+        String urlImagen = producto.getImagen() != null ? producto.getImagen().getUrl() : null;
 
-        return productoService.crearProducto(nombre, cantidad, precio, categoria, urlImagen);
+        return productoService.crearProducto(
+                producto.getNombre(),
+                producto.getCantidad(),
+                producto.getPrecio(),
+                categoria,
+                urlImagen
+        );
     }
 
     // Listar productos
@@ -48,17 +53,24 @@ public class ProductoController {
 
     // Actualizar cantidad o precio
     @PutMapping("/{id}")
-    public Producto actualizarProducto(
-            @PathVariable Long id,
-            @RequestParam(required = false) Integer cantidad,
-            @RequestParam(required = false) Double precio) {
-        return productoService.actualizarProducto(id, cantidad, precio);
+    public Producto actualizarProducto(@PathVariable Long id, @RequestBody Producto producto) {
+        Categoria categoria = categoriaRepository.findById(producto.getCategoria().getId()).orElse(null);
+        return productoService.actualizarProducto(
+                id,
+                producto.getNombre(),
+                producto.getCantidad(),
+                producto.getPrecio(),
+                categoria,
+                producto.getImagen().getUrl()
+        );
     }
 
     // Eliminar producto
     @DeleteMapping("/{id}")
-    public String eliminarProducto(@PathVariable Long id) {
+    public Map<String, String> eliminarProducto(@PathVariable Long id) {
         productoService.eliminarProducto(id);
-        return "Producto eliminado correctamente";
+        return Map.of("message", "Producto eliminado correctamente");
     }
+
+
 }

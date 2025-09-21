@@ -21,17 +21,14 @@ public class ProductoService {
 
     @Transactional
     public Producto crearProducto(String nombre, int cantidad, double precio, Categoria categoria, String urlImagen) {
-        // Crear imagen
-        Imagen img = new Imagen();
-        img.setUrl(urlImagen);
-        imagenRepository.save(img);
-
-        // Crear producto
         Producto producto = new Producto();
         producto.setNombre(nombre);
         producto.setCantidad(cantidad);
         producto.setPrecio(precio);
         producto.setCategoria(categoria);
+
+        Imagen img = new Imagen();
+        img.setUrl(urlImagen);
         producto.setImagen(img);
 
         return productoRepository.save(producto);
@@ -47,13 +44,26 @@ public class ProductoService {
     }
 
     @Transactional
-    public Producto actualizarProducto(Long id, Integer cantidad, Double precio) {
+    public Producto actualizarProducto(Long id, String nombre, Integer cantidad, Double precio, Categoria categoria, String urlImagen) {
         Producto producto = obtenerProducto(id);
+
+        if (nombre != null) producto.setNombre(nombre);
         if (cantidad != null) producto.setCantidad(cantidad);
         if (precio != null) producto.setPrecio(precio);
+        if (categoria != null) producto.setCategoria(categoria);
+
+        if (urlImagen != null) {
+            Imagen img = producto.getImagen();
+            if (img == null) {
+                img = new Imagen();
+            }
+            img.setUrl(urlImagen);
+            imagenRepository.save(img);
+            producto.setImagen(img);
+        }
+
         return productoRepository.save(producto);
     }
-
     public void eliminarProducto(Long id) {
         productoRepository.deleteById(id);
     }

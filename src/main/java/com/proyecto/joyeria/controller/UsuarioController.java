@@ -39,4 +39,18 @@ public class UsuarioController {
         usuarioService.eliminar(email);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/{email}")
+    public ResponseEntity<Usuario> actualizar(@PathVariable String email, @RequestBody Usuario usuario) {
+        return usuarioService.obtenerPorEmail(email)
+                .map(usuarioExistente -> {
+                    // Actualizar solo los campos necesarios
+                    usuarioExistente.setNombre(usuario.getNombre());
+                    usuarioExistente.setContrasena(usuario.getContrasena());
+
+                    Usuario actualizado = usuarioService.guardar(usuarioExistente);
+                    return ResponseEntity.ok(actualizado);
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
 }

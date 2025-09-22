@@ -1,6 +1,7 @@
 package com.proyecto.joyeria.controller;
 
-import com.proyecto.joyeria.entity.*;
+import com.proyecto.joyeria.entity.Categoria;
+import com.proyecto.joyeria.entity.Producto;
 import com.proyecto.joyeria.service.ProductoService;
 import com.proyecto.joyeria.repository.CategoriaRepository;
 import org.springframework.web.bind.annotation.*;
@@ -51,17 +52,23 @@ public class ProductoController {
         return productoService.obtenerProducto(id);
     }
 
-    // Actualizar cantidad o precio
+    // Actualizar producto
     @PutMapping("/{id}")
     public Producto actualizarProducto(@PathVariable Long id, @RequestBody Producto producto) {
-        Categoria categoria = categoriaRepository.findById(producto.getCategoria().getId()).orElse(null);
+        Categoria categoria = null;
+        if (producto.getCategoria() != null && producto.getCategoria().getId() != null) {
+            categoria = categoriaRepository.findById(producto.getCategoria().getId()).orElse(null);
+        }
+
+        String urlImagen = producto.getImagen() != null ? producto.getImagen().getUrl() : null;
+
         return productoService.actualizarProducto(
                 id,
                 producto.getNombre(),
                 producto.getCantidad(),
                 producto.getPrecio(),
                 categoria,
-                producto.getImagen().getUrl()
+                urlImagen
         );
     }
 
@@ -71,6 +78,4 @@ public class ProductoController {
         productoService.eliminarProducto(id);
         return Map.of("message", "Producto eliminado correctamente");
     }
-
-
 }

@@ -50,16 +50,16 @@ INSERT INTO Categoria (nombre) VALUES ('Conjunto de joyería');
 INSERT INTO Categoria (nombre) VALUES ('Reloj');
 INSERT INTO Categoria (nombre) VALUES ('Accesorio para Cabello');
 
-INSERT INTO Usuario (email, nombre, contrasena, direccion) VALUES ('ana@example.com', 'Ana Gómez', 'pwd123', 'San José, Costa Rica');
-INSERT INTO Usuario (email, nombre, contrasena, direccion) VALUES ('carlos@example.com', 'Carlos Pérez', 'pwd123', 'Cartago, Costa Rica');
-INSERT INTO Usuario (email, nombre, contrasena, direccion) VALUES ('maria@example.com', 'María Rodríguez', 'pwd123', 'Heredia, Costa Rica');
-INSERT INTO Usuario (email, nombre, contrasena, direccion) VALUES ('jorge@example.com', 'Jorge López', 'pwd123', 'Alajuela, Costa Rica');
-INSERT INTO Usuario (email, nombre, contrasena, direccion) VALUES ('sofia@example.com', 'Sofía Jiménez', 'pwd123', 'Limón, Costa Rica');
-INSERT INTO Usuario (email, nombre, contrasena, direccion) VALUES ('pedro@example.com', 'Pedro Ramírez', 'pwd123', 'Puntarenas, Costa Rica');
-INSERT INTO Usuario (email, nombre, contrasena, direccion) VALUES ('lucia@example.com', 'Lucía Vargas', 'pwd123', 'San José, Costa Rica');
-INSERT INTO Usuario (email, nombre, contrasena, direccion) VALUES ('andres@example.com', 'Andrés Salazar', 'pwd123', 'Cartago, Costa Rica');
-INSERT INTO Usuario (email, nombre, contrasena, direccion) VALUES ('valeria@example.com', 'Valeria Castillo', 'pwd123', 'Heredia, Costa Rica');
-INSERT INTO Usuario (email, nombre, contrasena, direccion) VALUES ('diego@example.com', 'Diego Solís', 'pwd123', 'Alajuela, Costa Rica');
+INSERT INTO Usuario (email, nombre, contrasena) VALUES ('ana@example.com', 'Ana Gómez', 'pwd123');
+INSERT INTO Usuario (email, nombre, contrasena) VALUES ('carlos@example.com', 'Carlos Pérez', 'pwd123', 'Cartago, Costa Rica');
+INSERT INTO Usuario (email, nombre, contrasena) VALUES ('maria@example.com', 'María Rodríguez', 'pwd123', 'Heredia, Costa Rica');
+INSERT INTO Usuario (email, nombre, contrasena) VALUES ('jorge@example.com', 'Jorge López', 'pwd123', 'Alajuela, Costa Rica');
+INSERT INTO Usuario (email, nombre, contrasena) VALUES ('sofia@example.com', 'Sofía Jiménez', 'pwd123', 'Limón, Costa Rica');
+INSERT INTO Usuario (email, nombre, contrasena) VALUES ('pedro@example.com', 'Pedro Ramírez', 'pwd123', 'Puntarenas, Costa Rica');
+INSERT INTO Usuario (email, nombre, contrasena) VALUES ('lucia@example.com', 'Lucía Vargas', 'pwd123', 'San José, Costa Rica');
+INSERT INTO Usuario (email, nombre, contrasena) VALUES ('andres@example.com', 'Andrés Salazar', 'pwd123', 'Cartago, Costa Rica');
+INSERT INTO Usuario (email, nombre, contrasena) VALUES ('valeria@example.com', 'Valeria Castillo', 'pwd123');
+INSERT INTO Usuario (email, nombre, contrasena) VALUES ('diego@example.com', 'Diego Solís', 'pwd123');
 
 INSERT INTO Imagen (url) VALUES ('https://example.com/img/collar_perlas1.jpg');   -- id 1
 INSERT INTO Imagen (url) VALUES ('https://example.com/img/collar_dorado1.jpg');   -- id 2

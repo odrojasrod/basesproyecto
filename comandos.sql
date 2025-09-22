@@ -51,13 +51,13 @@ INSERT INTO Categoria (nombre) VALUES ('Reloj');
 INSERT INTO Categoria (nombre) VALUES ('Accesorio para Cabello');
 
 INSERT INTO Usuario (email, nombre, contrasena) VALUES ('ana@example.com', 'Ana Gómez', 'pwd123');
-INSERT INTO Usuario (email, nombre, contrasena) VALUES ('carlos@example.com', 'Carlos Pérez', 'pwd123', 'Cartago, Costa Rica');
-INSERT INTO Usuario (email, nombre, contrasena) VALUES ('maria@example.com', 'María Rodríguez', 'pwd123', 'Heredia, Costa Rica');
-INSERT INTO Usuario (email, nombre, contrasena) VALUES ('jorge@example.com', 'Jorge López', 'pwd123', 'Alajuela, Costa Rica');
-INSERT INTO Usuario (email, nombre, contrasena) VALUES ('sofia@example.com', 'Sofía Jiménez', 'pwd123', 'Limón, Costa Rica');
-INSERT INTO Usuario (email, nombre, contrasena) VALUES ('pedro@example.com', 'Pedro Ramírez', 'pwd123', 'Puntarenas, Costa Rica');
-INSERT INTO Usuario (email, nombre, contrasena) VALUES ('lucia@example.com', 'Lucía Vargas', 'pwd123', 'San José, Costa Rica');
-INSERT INTO Usuario (email, nombre, contrasena) VALUES ('andres@example.com', 'Andrés Salazar', 'pwd123', 'Cartago, Costa Rica');
+INSERT INTO Usuario (email, nombre, contrasena) VALUES ('carlos@example.com', 'Carlos Pérez', 'pwd123');
+INSERT INTO Usuario (email, nombre, contrasena) VALUES ('maria@example.com', 'María Rodríguez', 'pwd123');
+INSERT INTO Usuario (email, nombre, contrasena) VALUES ('jorge@example.com', 'Jorge López', 'pwd123');
+INSERT INTO Usuario (email, nombre, contrasena) VALUES ('sofia@example.com', 'Sofía Jiménez', 'pwd123');
+INSERT INTO Usuario (email, nombre, contrasena) VALUES ('pedro@example.com', 'Pedro Ramírez', 'pwd123');
+INSERT INTO Usuario (email, nombre, contrasena) VALUES ('lucia@example.com', 'Lucía Vargas', 'pwd123');
+INSERT INTO Usuario (email, nombre, contrasena) VALUES ('andres@example.com', 'Andrés Salazar', 'pwd123');
 INSERT INTO Usuario (email, nombre, contrasena) VALUES ('valeria@example.com', 'Valeria Castillo', 'pwd123');
 INSERT INTO Usuario (email, nombre, contrasena) VALUES ('diego@example.com', 'Diego Solís', 'pwd123');
 
